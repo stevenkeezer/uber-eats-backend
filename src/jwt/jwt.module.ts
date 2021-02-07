@@ -1,7 +1,8 @@
 import { DynamicModule, Module, Global } from '@nestjs/common';
 import { JwtService } from './jwt.service';
-import { CONFIG_OPTIONS } from './jwt.constants';
+
 import { JwtModuleOptions } from './jwt.interfaces';
+import { CONFIG_OPTIONS } from 'src/common/common.constants';
 
 @Module({})
 @Global()
