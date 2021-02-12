@@ -154,8 +154,14 @@ export class DishResolver {
     return this.restaurantService.deleteDish(owner, deleteDishInput);
   }
 
+  @Mutation((returns) => Boolean)
+  potatoeReady() {
+    pubsub.publish('potatoes', { readyPotatoe: 'Your potatoe is ready' });
+    return true;
+  }
+
   @Subscription((returns) => String)
-  potatoes() {
+  readyPotatoe() {
     return pubsub.asyncIterator('potatoes');
   }
 }

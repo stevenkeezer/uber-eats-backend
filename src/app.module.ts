@@ -67,7 +67,6 @@ import { OrderItem } from './orders/entities/order-item.entity';
       installSubscriptionHandlers: true,
       autoSchemaFile: true,
       context: ({ req, connection }) => {
-        console.log(connection);
         const TOKEN_KEY = 'x-jwt';
         return {
           token: req ? req.headers[TOKEN_KEY] : connection.context[TOKEN_KEY],
@@ -87,15 +86,9 @@ import { OrderItem } from './orders/entities/order-item.entity';
     RestaurantsModule,
     OrdersModule,
     OrderItem,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(JwtMiddleware).forRoutes({
-      path: '/graphql',
-      method: RequestMethod.POST,
-    });
-  }
-}
+export class AppModule {}
